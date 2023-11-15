@@ -1,0 +1,22 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  min-width: max-content;
+  height: max-content;
+  padding: 4px 20px;
+  background-color: #007BFF;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all ease-in-out 0.2s;
+  color: white;
+
+  &:hover {
+    transform: scale(1.04);
+    background-color: black;
+    color: white;
+  }
+}

@@ -1,14 +1,17 @@
-import RepositoryList from './components/repositoryList/RepositoryList.component';
-import RepositorySearchBar from './components/repositorySearchBar/RepositorySearchBar.component';
+import RepositoryList from './components/repository-list/RepositoryList.component';
+import RepositorySearchBar from './components/repository-search-bar/RepositorySearchBar.component';
+import RepositoriesProvider from './Repositories.context';
 import styles from './Repositories.module.scss';
 
 function Repositories() {
   return (
-    <section className={styles.repositories}>
-      <RepositorySearchBar />
+    <RepositoriesProvider>
+      <section className={styles.repositories}>
+        <RepositorySearchBar />
 
-      <RepositoryList />
-    </section>
+        <RepositoryList />
+      </section>
+    </RepositoriesProvider>
   );
 }
 
