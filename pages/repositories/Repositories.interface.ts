@@ -11,4 +11,6 @@ export interface RepositoriesContextType {
   setSearchTerm: Dispatch<SetStateAction<string>>;
   error: Error | null;
   isLoading: boolean;
+  totalNumberRepositories: number | undefined;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 }

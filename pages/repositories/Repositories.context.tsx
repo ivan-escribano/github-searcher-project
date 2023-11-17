@@ -9,17 +9,27 @@ const RepositoriesContext = createContext<RepositoriesContextType | undefined>(u
 
 const RepositoriesProvider = ({ children }: RepositoriesProviderProps) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(0);
+
+  const { data: totalNumberRepositories } = useQuery<number>({
+    queryKey: ['repositories', searchTerm],
+    queryFn: () => RepositoriesApi.getTotalRepositoriesCount(searchTerm),
+  });
 
   const {
     data: repositories,
     isLoading,
     error,
   } = useQuery<RepositoryDTO[]>({
-    queryKey: ['repositories', searchTerm],
-    queryFn: () => RepositoriesApi.searchRepositories(searchTerm),
+    queryKey: ['repositories', searchTerm, currentPage],
+    queryFn: () => RepositoriesApi.searchRepositories(searchTerm, currentPage),
   });
 
-  return <RepositoriesContext.Provider value={{ repositories, setSearchTerm, isLoading, error }}>{children}</RepositoriesContext.Provider>;
+  return (
+    <RepositoriesContext.Provider value={{ repositories, setSearchTerm, isLoading, error, totalNumberRepositories, setCurrentPage }}>
+      {children}
+    </RepositoriesContext.Provider>
+  );
 };
 
 export const useRepositories = () => {
