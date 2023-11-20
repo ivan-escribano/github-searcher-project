@@ -1,14 +1,15 @@
 import React from 'react';
 
 import { REPOSITORIES_PER_PAGE } from '@/api/repositories/repositories.config';
+import GenericAnimation from '@/components/genericAnimation/GenericAnimation.component';
 import GenericPagination from '@/components/genericPagination/GenericPagination.component';
-import { useRepositories } from '../../Repositories.context';
+import { useRepositoriesContext } from '../../Repositories.context';
 import RepositoryCardSkeleton from '../repository-card-skeleton/RepositoryCardSkeleton.component';
 import RepositoryCard from '../repository-card/RepositoryCard.component';
 import styles from './RepositoryList.module.scss';
 
 const RepositoryList = () => {
-  const { repositories, isLoading, totalNumberRepositories, setCurrentPage } = useRepositories();
+  const { repositories, isLoading, totalNumberRepositories, setCurrentPage } = useRepositoriesContext();
 
   const handlePaginationPage = (page: number) => {
     setCurrentPage(page);
@@ -21,7 +22,11 @@ const RepositoryList = () => {
       {isLoading ? (
         <RepositoryCardSkeleton skeletonsNumber={6} />
       ) : (
-        repositories?.map((repository) => <RepositoryCard key={repository.id} repository={repository} />)
+        repositories?.map((repository) => (
+          <GenericAnimation key={repository.id}>
+            <RepositoryCard repository={repository} />
+          </GenericAnimation>
+        ))
       )}
 
       <GenericPagination numberPages={numberPages} onChange={handlePaginationPage} />

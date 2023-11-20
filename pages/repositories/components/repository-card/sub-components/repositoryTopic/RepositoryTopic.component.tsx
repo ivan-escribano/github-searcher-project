@@ -1,7 +1,10 @@
 import React from 'react';
 
-const RepositoryTopic = () => {
-  return <div>RepositoryTopic</div>;
+import { RepositoryTopicProps } from './RepositoryTopic.interface';
+import styles from './RepositoryTopic.module.scss';
+
+const RepositoryTopic = ({ topic }: RepositoryTopicProps) => {
+  return <div className={styles.topic}>{topic}</div>;
 };
 
 export default RepositoryTopic;

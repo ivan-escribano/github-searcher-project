@@ -1,6 +1,53 @@
+:root {
+  --font-family: 'Arial', sans-serif;
+
+  --base-font-size: 16px;
+  --scale-factor: 1.1;
+
+  --font-size-1: calc(var(--base-font-size) * 1);
+  --font-size-2: calc(var(--font-size-1) * var(--scale-factor));
+  --font-size-3: calc(var(--font-size-2) * var(--scale-factor));
+  --font-size-4: calc(var(--font-size-3) * var(--scale-factor));
+  --font-size-5: calc(var(--font-size-4) * var(--scale-factor));
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  --font-weight-bolder: 900;
+
+  --line-height-normal: 1.5;
+  --line-height-tight: 1.25;
+  --line-height-loose: 1.75;
+
+  --letter-spacing-normal: normal;
+  --letter-spacing-wide: 0.05em;
+
+  --primary-blue: #0047AB;
+  --secondary-blue: #007BFF;
+  --primary-purple: #6A5ACD;
+  --secondary-purple: #800080;
+  --accent-light-blue: #ADD8E6;
+  --accent-light-purple: #B19CD9;
+
+  --dark: black;
+  --light: white;
+}
+
+
 * {
   margin: 0;
   box-sizing: border-box;
   padding: 0;
+  font-size: var(--font-size-1);
 }
 
+h1,
+h2 {
+  font-size: var(--font-size-5);
+}
+
+p,
+span {
+  font-size: var(--font-size-1);
+}

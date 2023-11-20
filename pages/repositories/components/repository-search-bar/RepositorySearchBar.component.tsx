@@ -1,11 +1,11 @@
 import React from 'react';
 
 import GenericInput from '@/components/generic-input/GenericInput.component';
-import { useRepositories } from '../../Repositories.context';
+import { useRepositoriesContext } from '../../Repositories.context';
 import { DEFAULT_GITHUB_REPOSITORY } from './RepositorySearchBar.config';
 
 const RepositorySearchBar = () => {
-  const { setSearchTerm } = useRepositories();
+  const { setSearchTerm } = useRepositoriesContext();
 
   const handleSearchChange = (valueToSearch: string) => {
     setSearchTerm(valueToSearch);

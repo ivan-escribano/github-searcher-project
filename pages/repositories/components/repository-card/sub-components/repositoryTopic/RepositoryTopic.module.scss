@@ -1,0 +1,16 @@
+.topic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  min-width: 100px;
+  padding: 4px 8px;
+  background-color: var(--secondary-blue);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  color: var(--light);
+
+  &:hover {
+    background-color: black;
+  }
+}
