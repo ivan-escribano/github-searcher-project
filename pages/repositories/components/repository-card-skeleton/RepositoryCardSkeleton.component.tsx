@@ -9,7 +9,7 @@ const RepositoryCardSkeleton = ({ skeletonsNumber }: RepositoryCardSkeletonProps
   return (
     <>
       {Array.from(new Array(skeletonsNumber)).map((_, index) => (
-        <Skeleton key={index} animation={'pulse'} variant="rounded" className={styles.skeleton} />
+        <Skeleton key={index} animation={'pulse'} variant="rounded" className={styles.skeleton} role="img" />
       ))}
     </>
   );

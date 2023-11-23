@@ -56,7 +56,7 @@ const RepositoryCard = ({ repository }: RepositoryCardProps) => {
 
           <div className={styles.info}>
             <div className={styles.language}>
-              <span style={{ backgroundColor: languageColor }} className={styles.language__color}></span>
+              <span style={{ backgroundColor: languageColor }} className={styles.language__color} data-testid="language-color"></span>
               <p>{language}</p>
             </div>
 

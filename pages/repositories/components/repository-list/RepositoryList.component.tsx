@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { REPOSITORIES_PER_PAGE } from '@/api/repositories/repositories.config';
-import GenericAnimation from '@/components/genericAnimation/GenericAnimation.component';
-import GenericPagination from '@/components/genericPagination/GenericPagination.component';
+import GenericAnimation from '@/components/generic-animation/GenericAnimation.component';
+import GenericPagination from '@/components/generic-pagination/GenericPagination.component';
 import { useRepositoriesContext } from '../../Repositories.context';
 import RepositoryCardSkeleton from '../repository-card-skeleton/RepositoryCardSkeleton.component';
 import RepositoryCard from '../repository-card/RepositoryCard.component';
@@ -29,7 +29,7 @@ const RepositoryList = () => {
         ))
       )}
 
-      <GenericPagination numberPages={numberPages} onChange={handlePaginationPage} />
+      {numberPages > 0 && <GenericPagination numberPages={numberPages} onChange={handlePaginationPage} />}
     </section>
   );
 };
