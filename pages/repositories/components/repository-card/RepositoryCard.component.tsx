@@ -74,7 +74,7 @@ const RepositoryCard = ({ repository }: RepositoryCardProps) => {
       </div>
 
       <div className={styles.actions}>
-        <ActionButton onClick={handleRedirectionGithubRepo}>
+        <ActionButton onClick={handleRedirectionGithubRepo} className={styles.actions__button}>
           <RemoveRedEyeIcon />
           <p>View Repo</p>
         </ActionButton>
