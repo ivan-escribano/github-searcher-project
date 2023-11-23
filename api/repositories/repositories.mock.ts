@@ -7,10 +7,6 @@ const MOCK_REPOSITORIES = [
   { id: 2, name: 'Repo2', description: 'Description 2' },
 ];
 
-jest.mock('../shared/apiConfig', () => ({
-  get: jest.fn(),
-}));
-
 const mockGetResolvedValue = (response: object) => {
   (api.get as jest.Mock).mockResolvedValue(response);
 };
