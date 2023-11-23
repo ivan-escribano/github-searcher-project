@@ -23,11 +23,13 @@
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
+    "@types/jest": "^29.5.10",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
