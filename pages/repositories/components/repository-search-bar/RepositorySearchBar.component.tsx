@@ -1,17 +1,22 @@
 import React from 'react';
 
+import { useRouter } from 'next/router';
+
 import GenericInput from '@/components/generic-input/GenericInput.component';
+import { updateQueryParameter } from '@/utils/updateQueryParams.util';
 import { useRepositoriesContext } from '../../Repositories.context';
-import { DEFAULT_GITHUB_REPOSITORY } from './RepositorySearchBar.config';
 
 const RepositorySearchBar = () => {
-  const { setSearchTerm } = useRepositoriesContext();
+  const { setSearchTerm, searchTerm } = useRepositoriesContext();
+  const router = useRouter();
 
   const handleSearchChange = (valueToSearch: string) => {
     setSearchTerm(valueToSearch);
+
+    updateQueryParameter(router, 'name', valueToSearch);
   };
 
-  return <GenericInput label={'Search Github repository'} defaultValue={DEFAULT_GITHUB_REPOSITORY} onChange={handleSearchChange} />;
+  return <GenericInput label={'Search Github repository'} defaultValue={searchTerm} onChange={handleSearchChange} />;
 };
 
 export default RepositorySearchBar;

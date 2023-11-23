@@ -11,6 +11,15 @@ import {
   setMockTotalNumberRepositories,
 } from './RepositoryList.mock';
 
+const mockPush = jest.fn();
+
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    push: mockPush,
+    query: { page: '1' },
+  }),
+}));
+
 jest.mock('../../Repositories.context', () => ({
   useRepositoriesContext: () => ({
     repositories: mockRepositories,
@@ -79,5 +88,16 @@ describe('RepositoryList', () => {
     const paginationComponent = screen.queryByRole('navigation');
 
     expect(paginationComponent).not.toBeInTheDocument();
+  });
+
+  test('should update the router query on pagination change', async () => {
+    render(<RepositoryList />);
+
+    await act(async () => {
+      const paginationButton = screen.getByText('2');
+      paginationButton.click();
+    });
+
+    expect(mockPush).toHaveBeenCalled();
   });
 });

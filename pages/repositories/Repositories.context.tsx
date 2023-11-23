@@ -5,14 +5,16 @@ import useGetRepositoriesData from './useGetRepositoriesData.hook';
 
 const RepositoriesContext = createContext<RepositoriesContextType | undefined>(undefined);
 
-const RepositoriesProvider = ({ children }: RepositoriesProviderProps) => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [currentPage, setCurrentPage] = useState<number>(0);
+const RepositoriesProvider = ({ children, initialPage = 0, initialSearchTerm = '' }: RepositoriesProviderProps) => {
+  const [searchTerm, setSearchTerm] = useState<string>(initialSearchTerm);
+  const [currentPage, setCurrentPage] = useState<number>(initialPage);
 
   const { repositories, totalNumberRepositories, isLoading, error } = useGetRepositoriesData(searchTerm, currentPage);
 
   return (
-    <RepositoriesContext.Provider value={{ repositories, setSearchTerm, isLoading, error, totalNumberRepositories, setCurrentPage }}>
+    <RepositoriesContext.Provider
+      value={{ repositories, searchTerm, currentPage, totalNumberRepositories, isLoading, error, setCurrentPage, setSearchTerm }}
+    >
       {children}
     </RepositoriesContext.Provider>
   );

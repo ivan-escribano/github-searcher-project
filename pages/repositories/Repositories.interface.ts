@@ -4,13 +4,22 @@ import { RepositoryDTO } from '@/dtos/Repository.dto';
 
 export interface RepositoriesProviderProps {
   children: ReactNode | ReactNode[];
+  initialPage: number;
+  initialSearchTerm: string;
+}
+
+export interface RepositoriesProps {
+  initialPage: number;
+  initialSearchTerm: string;
 }
 
 export interface RepositoriesContextType {
   repositories: RepositoryDTO[] | undefined;
-  setSearchTerm: Dispatch<SetStateAction<string>>;
+  searchTerm: string;
+  currentPage: number;
+  totalNumberRepositories: number | undefined;
   error: Error | null;
   isLoading: boolean;
-  totalNumberRepositories: number | undefined;
+  setSearchTerm: Dispatch<SetStateAction<string>>;
   setCurrentPage: Dispatch<SetStateAction<number>>;
 }

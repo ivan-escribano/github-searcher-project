@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import Repositories from './index.page';
+import Repositories, { getServerSideProps } from './index.page';
+import { createMockContext } from './Repositories.mock';
 
 import '@testing-library/jest-dom';
 
@@ -22,18 +23,42 @@ jest.mock('./components/repository-list/RepositoryList.component', () => ({
 
 describe('Repositories', () => {
   test('should render the logo', () => {
-    render(<Repositories />);
+    render(<Repositories initialPage={0} initialSearchTerm={''} />);
     const logoImage = screen.getByAltText('Logo GitHub Searcher');
     expect(logoImage).toBeInTheDocument();
   });
 
   test('should render the repository search bar', () => {
-    render(<Repositories />);
+    render(<Repositories initialPage={0} initialSearchTerm={''} />);
     expect(screen.getByText('MockRepositorySearchBar')).toBeInTheDocument();
   });
 
   test('should render the repository list', () => {
-    render(<Repositories />);
+    render(<Repositories initialPage={0} initialSearchTerm={''} />);
     expect(screen.getByText('MockRepositoryList')).toBeInTheDocument();
+  });
+
+  test('should return initial page and search term based on query', async () => {
+    const context = createMockContext({ page: '2', name: 'test-term' });
+    const response = await getServerSideProps(context);
+
+    expect(response).toEqual({
+      props: {
+        initialPage: 2,
+        initialSearchTerm: 'test-term',
+      },
+    });
+  });
+
+  test('should handle missing query parameters', async () => {
+    const context = createMockContext({});
+    const response = await getServerSideProps(context);
+
+    expect(response).toEqual({
+      props: {
+        initialPage: 0,
+        initialSearchTerm: '',
+      },
+    });
   });
 });
