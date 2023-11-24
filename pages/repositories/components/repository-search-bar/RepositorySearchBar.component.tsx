@@ -12,10 +12,12 @@ const RepositorySearchBar = () => {
 
   const handleSearchChange = (valueToSearch: string) => {
     setSearchTerm(valueToSearch);
+
     setCurrentPage(1);
 
-    updateQueryParameter(router, 'name', valueToSearch);
-    updateQueryParameter(router, 'page', '1');
+    const queryParams = { name: valueToSearch, page: '1' };
+
+    updateQueryParameter(router, queryParams);
   };
 
   return <GenericInput label={'Search Github repository'} defaultValue={searchTerm} onChange={handleSearchChange} />;

@@ -14,13 +14,17 @@ import styles from './RepositoryList.module.scss';
 const RepositoryList = () => {
   const { repositories, currentPage, isLoading, totalNumberRepositories, setCurrentPage } = useRepositoriesContext();
   const router = useRouter();
-  console.log(totalNumberRepositories);
+
   const numberPages = totalNumberRepositories ? Math.ceil(totalNumberRepositories / REPOSITORIES_PER_PAGE) : undefined;
 
   const handlePaginationPage = (page: number) => {
     setCurrentPage(page);
 
-    updateQueryParameter(router, 'page', page.toString());
+    const queryParams = { page: page.toString() };
+
+    updateQueryParameter(router, queryParams);
+
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -30,7 +34,7 @@ const RepositoryList = () => {
       ) : (
         repositories &&
         repositories.map((repository) => (
-          <GenericAnimation key={repository.id}>
+          <GenericAnimation key={repository.id} type="order">
             <RepositoryCard repository={repository} />
           </GenericAnimation>
         ))

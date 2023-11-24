@@ -12,6 +12,7 @@ import {
 } from './RepositoryList.mock';
 
 const mockPush = jest.fn();
+window.scrollTo = jest.fn();
 
 jest.mock('next/router', () => ({
   useRouter: () => ({
