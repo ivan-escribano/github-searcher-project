@@ -107,6 +107,7 @@
   .card {
     flex-direction: column;
     align-items: center;
+    padding: 12px;
 
     .cardContent {
       flex-direction: column;
@@ -114,13 +115,19 @@
 
       .cardBody {
         &__fullName {
-          width: 100%;
+          overflow: hidden;
+          max-width: 300px;
           text-align: center;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         &__description {
-          width: 100%;
+          overflow: hidden;
+          max-width: 300px;
           text-align: center;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }
