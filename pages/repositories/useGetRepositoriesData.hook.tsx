@@ -10,6 +10,7 @@ const useGetRepositoriesData = (searchTerm: string, currentPage: number) => {
   const { data: totalNumberRepositories } = useQuery<number>({
     queryKey: ['repositories', debouncedSearchTerm],
     queryFn: () => RepositoriesApi.getTotalRepositoriesCount(debouncedSearchTerm),
+    enabled: !!debouncedSearchTerm,
   });
 
   const {
@@ -19,6 +20,7 @@ const useGetRepositoriesData = (searchTerm: string, currentPage: number) => {
   } = useQuery<RepositoryDTO[]>({
     queryKey: ['repositories', debouncedSearchTerm, currentPage],
     queryFn: () => RepositoriesApi.searchRepositories(debouncedSearchTerm, currentPage),
+    enabled: !!debouncedSearchTerm,
   });
 
   return { repositories, totalNumberRepositories, isLoading, error };

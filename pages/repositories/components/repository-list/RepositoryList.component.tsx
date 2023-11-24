@@ -14,8 +14,8 @@ import styles from './RepositoryList.module.scss';
 const RepositoryList = () => {
   const { repositories, currentPage, isLoading, totalNumberRepositories, setCurrentPage } = useRepositoriesContext();
   const router = useRouter();
-
-  const numberPages = totalNumberRepositories ? Math.ceil(totalNumberRepositories / REPOSITORIES_PER_PAGE) : 0;
+  console.log(totalNumberRepositories);
+  const numberPages = totalNumberRepositories ? Math.ceil(totalNumberRepositories / REPOSITORIES_PER_PAGE) : undefined;
 
   const handlePaginationPage = (page: number) => {
     setCurrentPage(page);
@@ -28,14 +28,15 @@ const RepositoryList = () => {
       {isLoading ? (
         <RepositoryCardSkeleton skeletonsNumber={6} />
       ) : (
-        repositories?.map((repository) => (
+        repositories &&
+        repositories.map((repository) => (
           <GenericAnimation key={repository.id}>
             <RepositoryCard repository={repository} />
           </GenericAnimation>
         ))
       )}
 
-      {numberPages > 0 && <GenericPagination numberPages={numberPages} onChange={handlePaginationPage} defaultPage={currentPage} />}
+      {numberPages && <GenericPagination numberPages={numberPages} onChange={handlePaginationPage} defaultPage={currentPage} />}
     </section>
   );
 };
