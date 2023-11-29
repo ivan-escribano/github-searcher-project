@@ -20,6 +20,7 @@ const GenericInput = ({ label, onChange, defaultValue, variant = 'outlined', cla
       defaultValue={defaultValue}
       className={`${styles.input} ${className || ''}`}
       placeholder="Ex: resume-wizards , github-searcher-timedi"
+      data-cy="input-searcher"
     />
   );
 };

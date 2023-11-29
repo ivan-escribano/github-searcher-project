@@ -9,7 +9,7 @@ const ActionButton = ({ children, onClick, className }: ActionButtonProps) => {
   };
 
   return (
-    <button onClick={handleOnClick} className={`${styles.button} ${className || ''}`}>
+    <button onClick={handleOnClick} className={`${styles.button} ${className || ''}`} data-cy={'button-action'}>
       {children}
     </button>
   );
