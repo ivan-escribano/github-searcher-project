@@ -2,7 +2,7 @@
 
 describe('Check flow searching for a github repository', () => {
   it('Should search for a repository and go to the corresponding repository', () => {
-    cy.visit('http://localhost:3000');
+    cy.visit('');
 
     cy.window().then((win) => {
       cy.stub(win, 'open').as('windowOpen');
