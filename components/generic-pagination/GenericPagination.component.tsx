@@ -12,7 +12,7 @@ const GenericPagination = ({ numberPages, onChange, defaultPage }: GenericPagina
     onChange(page);
   };
 
-  return <Pagination count={pageCount} color="primary" onChange={handlePaginationChange} defaultPage={defaultPage} />;
+  return <Pagination count={pageCount} color="primary" onChange={handlePaginationChange} defaultPage={defaultPage} data-cy="pagination" />;
 };
 
 export default GenericPagination;
